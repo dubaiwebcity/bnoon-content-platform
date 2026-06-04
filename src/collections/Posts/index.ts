@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import {
+  
   BlocksFeature,
   FixedToolbarFeature,
   HeadingFeature,
@@ -130,6 +131,18 @@ export const Posts: CollectionConfig<'posts'> = {
               hasMany: true,
               relationTo: 'categories',
             },
+            {
+  name: 'tags',
+  type: 'array',
+  label: 'Tags',
+  fields: [
+    {
+      name: 'tag',
+      type: 'text',
+      required: true,
+    },
+  ],
+},
           ],
           label: 'Meta',
         },
