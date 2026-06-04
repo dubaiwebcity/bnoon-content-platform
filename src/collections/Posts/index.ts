@@ -77,10 +77,11 @@ export const Posts: CollectionConfig<'posts'> = {
         {
           fields: [
             {
-              name: 'heroImage',
-              type: 'upload',
-              relationTo: 'media',
-            },
+      name: 'imageUrl',
+      type: 'text',
+      label: 'Image URL',
+    },
+
             {
               name: 'content',
               type: 'richText',
