@@ -131,18 +131,18 @@ export const Posts: CollectionConfig<'posts'> = {
               hasMany: true,
               relationTo: 'categories',
             },
-            {
+          {
   name: 'tags',
   type: 'array',
   label: 'Tags',
   fields: [
     {
-      name: 'tag',
+      name: 'name',
       type: 'text',
       required: true,
     },
   ],
-},
+}
           ],
           label: 'Meta',
         },
