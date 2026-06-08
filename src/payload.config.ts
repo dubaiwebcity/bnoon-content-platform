@@ -3,7 +3,7 @@ import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
-
+import { FEATURES } from '@/config/features'
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
@@ -60,9 +60,24 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+collections: [
+  Pages,
+  Posts,
+  Media,
+  Categories,
+  Users,
+
+  // FEATURE CONTROLLED COLLECTIONS
+  ...(FEATURES.redirects ? [] : []),
+  ...(FEATURES.forms ? [] : []),
+  ...(FEATURES.formSubmissions ? [] : []),
+  ...(FEATURES.search ? [] : []),
+],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [
+  ...(FEATURES.header ? [Header] : []),
+  ...(FEATURES.footer ? [Footer] : []),
+],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,
