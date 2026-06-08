@@ -24,10 +24,10 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
 }
 
 export const plugins: Plugin[] = [
-  redirectsPlugin({
+/* redirectsPlugin({
     collections: ['pages', 'posts'],
     overrides: {
-      // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
+     @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
           if ('name' in field && field.name === 'from') {
@@ -45,7 +45,7 @@ export const plugins: Plugin[] = [
         afterChange: [revalidateRedirects],
       },
     },
-  }),
+  }),*/
   nestedDocsPlugin({
     collections: ['categories'],
     generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
@@ -54,7 +54,7 @@ export const plugins: Plugin[] = [
     generateTitle,
     generateURL,
   }),
-  formBuilderPlugin({
+ /*formBuilderPlugin({
     fields: {
       payment: false,
     },
@@ -79,8 +79,8 @@ export const plugins: Plugin[] = [
         })
       },
     },
-  }),
-  searchPlugin({
+  }),*/
+  /*searchPlugin({
     collections: ['posts'],
     beforeSync: beforeSyncWithSearch,
     searchOverrides: {
@@ -88,5 +88,5 @@ export const plugins: Plugin[] = [
         return [...defaultFields, ...searchFields]
       },
     },
-  }),
+  }),*/
 ]
