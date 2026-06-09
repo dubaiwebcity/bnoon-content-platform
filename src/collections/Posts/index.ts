@@ -71,6 +71,7 @@ export const Posts: CollectionConfig<'posts'> = {
       name: 'title',
       type: 'text',
       required: true,
+     localized: true,
     },
     {
       type: 'tabs',
@@ -81,11 +82,13 @@ export const Posts: CollectionConfig<'posts'> = {
       name: 'imageUrl',
       type: 'text',
       label: 'Image URL',
+       localized: true,
     },
 
             {
               name: 'content',
               type: 'richText',
+              localized: true,
               editor: lexicalEditor({
                 features: ({ rootFeatures }) => {
                   return [

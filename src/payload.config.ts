@@ -55,11 +55,28 @@ export default buildConfig({
       ],
     },
   },
+
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
+ localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Arabic',
+        code: 'ar',
+        rtl: true,
+      },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
+
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
