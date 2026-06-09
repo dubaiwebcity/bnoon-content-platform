@@ -143,6 +143,7 @@ export const Posts: CollectionConfig<'posts'> = {
       name: 'name',
       type: 'text',
       required: true,
+       localized: true,
     },
   ],
 }
