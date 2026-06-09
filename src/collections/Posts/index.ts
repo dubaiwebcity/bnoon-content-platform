@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import {
-  
+  AlignFeature,
   BlocksFeature,
   FixedToolbarFeature,
   HeadingFeature,
@@ -20,6 +20,7 @@ import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
 
 import {
+  
   MetaDescriptionField,
   MetaImageField,
   MetaTitleField,
@@ -98,6 +99,7 @@ export const Posts: CollectionConfig<'posts'> = {
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),
+                    AlignFeature(),
                   ]
                 },
               }),
