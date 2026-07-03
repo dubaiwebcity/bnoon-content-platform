@@ -13,23 +13,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: 22
+          cache: 'pnpm'
 
-      - name: npm install, build, and test
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
         env:
-         PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
-         DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: |
-          npm install
-          npm run build --if-present
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        env:
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: pnpm build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
