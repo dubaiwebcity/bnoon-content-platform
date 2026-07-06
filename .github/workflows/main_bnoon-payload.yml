@@ -32,20 +32,20 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build Next.js
         env:
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: pnpm build
 
+      # ✅ SIMPLE & SAFE DEPLOY PACKAGE (NO standalone, NO SWC issues)
       - name: Prepare deployment package
         run: |
           mkdir deploy
-          cp -r .next/standalone/* deploy/
-          mkdir -p deploy/.next
-          cp -r .next/static deploy/.next/
+          cp -r .next deploy/
           cp -r public deploy/
           cp package.json deploy/
+          cp pnpm-lock.yaml deploy/ || true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
