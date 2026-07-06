@@ -14,41 +14,37 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+          cache: npm
 
       - name: Install dependencies
         env:
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: pnpm install --frozen-lockfile
+        run: npm install
 
       - name: Build project
         env:
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: pnpm build
+        run: npm run build
 
       - name: Prepare deployment package
         run: |
+          rm -rf deploy
           mkdir -p deploy
-          mkdir -p deploy/.next
-          cp -r .next/static deploy/.next/
-          cp -r public deploy/
-          cp package.json deploy/
 
-          # IMPORTANT: fix swc helpers issue
-          mkdir -p deploy/node_modules/@swc
-          cp -r node_modules/@swc/helpers deploy/node_modules/@swc/
+          cp -r .next deploy/
+          cp -r public deploy/
+
+          cp package.json deploy/
+          cp package-lock.json deploy/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
