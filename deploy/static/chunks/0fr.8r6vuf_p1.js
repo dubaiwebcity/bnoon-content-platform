@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,827815,o=>{"use strict";var e=o.i(121149);o.s([],756852),o.i(756852),o.s(["InlineBlockComponent",()=>e.b,"useInlineBlockComponentContext",()=>e.a],827815)}]);

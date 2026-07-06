@@ -41,7 +41,6 @@ jobs:
       - name: Prepare deployment package
         run: |
           mkdir deploy
-          cp -r .next/standalone/* deploy/
           mkdir -p deploy/.next
           cp -r .next/static deploy/.next/
           cp -r public deploy/

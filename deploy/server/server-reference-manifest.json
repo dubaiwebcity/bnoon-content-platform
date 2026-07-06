@@ -1,0 +1,30 @@
+{
+  "node": {
+    "40b755364d4ec930c59bef6de1adead4d04fe83c60": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": 771236,
+          "async": false,
+          "exportedName": "$$RSC_SERVER_ACTION_0",
+          "filename": "src/app/(payload)/layout.tsx"
+        }
+      },
+      "filename": "src/app/(payload)/layout.tsx",
+      "exportedName": "$$RSC_SERVER_ACTION_0"
+    },
+    "6092dcc50becb6069f464eef86a38bcc4168ee8894": {
+      "workers": {
+        "app/(payload)/admin/[[...segments]]/page": {
+          "moduleId": 771236,
+          "async": false,
+          "exportedName": "$$RSC_SERVER_ACTION_0",
+          "filename": "node_modules/.pnpm/@payloadcms+next@3.85.0_@ty_90a686ef0fe428b372fd0ea3dcb28fef/node_modules/@payloadcms/next/dist/layouts/Root/index.js"
+        }
+      },
+      "filename": "node_modules/.pnpm/@payloadcms+next@3.85.0_@ty_90a686ef0fe428b372fd0ea3dcb28fef/node_modules/@payloadcms/next/dist/layouts/Root/index.js",
+      "exportedName": "$$RSC_SERVER_ACTION_0"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "Qg9fFoR5qZfQqrXBiTsCDpgXPEXZXDskv5UW2iELBWg="
+}
