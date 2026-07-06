@@ -108,7 +108,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ar') | ('en' | 'ar')[];
   globals: {
     header: Header;
     footer: Footer;
@@ -117,7 +117,7 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
-  locale: null;
+  locale: 'en' | 'ar';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -227,6 +227,7 @@ export interface Page {
 export interface Post {
   id: string;
   title: string;
+  imageUrl?: string | null;
   heroImage?: (string | null) | Media;
   content: {
     root: {
@@ -245,6 +246,12 @@ export interface Post {
   };
   relatedPosts?: (string | Post)[] | null;
   categories?: (string | Category)[] | null;
+  tags?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -1194,10 +1201,17 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  imageUrl?: T;
   heroImage?: T;
   content?: T;
   relatedPosts?: T;
   categories?: T;
+  tags?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
   meta?:
     | T
     | {
